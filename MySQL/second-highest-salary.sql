@@ -1,7 +1,7 @@
 # Time:  O(n)
 # Space: O(1)
 #
-# Write a SQL query to get the second highest salary from the Employee table.
+# Write a SQL query to get the second highest salary from the Employee table. Alias Salary as SecondHighestSalary.
 #
 # +----+--------+
 # | Id | Salary |
