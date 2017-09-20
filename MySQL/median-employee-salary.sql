@@ -1,4 +1,4 @@
-# Time:  O(nlogn)
+# Time:  O(n)
 # Space: O(n)
 
 SELECT Id, Company, Salary FROM
