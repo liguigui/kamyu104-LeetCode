@@ -1,14 +1,14 @@
 # Time:  O(nlogn)
 # Space: O(n)
 
-select Id, Company, Salary from
+SELECT Id, Company, Salary FROM
 (
-select e.Id, e.Salary, e.Company,  if (@Prev = e.Company , @Rank := @Rank + 1, @Rank := 1) as Rank, @Prev := e.Company
-from Employee e , (select @Rank := 0, @prev := 0) as Temp order by e.Company, e.Salary, e.Id
+SELECT e.Id, e.Salary, e.Company,  IF (@Prev = e.Company , @Rank := @Rank + 1, @Rank := 1) AS Rank, @Prev := e.Company
+FROM Employee e , (SELECT @Rank := 0, @prev := 0) AS Temp ORDER BY e.Company, e.Salary, e.Id
 ) Ranking
 INNER JOIN
 (
-select count(*) as TotalCount, Company as Name from Employee e2 group by e2.Company
+SELECT COUNT(*) AS TotalCount, Company AS Name FROM Employee e2 GROUP BY e2.Company
 ) CompanyCount
-on CompanyCount.Name = Ranking.Company
-where Rank = floor((TotalCount+1)/2) or Rank = floor((TotalCount+2)/2)
+ON CompanyCount.Name = Ranking.Company
+WHERE Rank = floor((TotalCount+1)/2) OR Rank = floor((TotalCount+2)/2)
