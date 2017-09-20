@@ -10,6 +10,7 @@ FROM
     FROM
         Employee
     GROUP BY ManagerId
-    HAVING COUNT(ManagerId) >= 5) AS t2
+    HAVING COUNT(ManagerId) >= 5
+    ORDER BY NULL) AS t2
     ON t1.Id = t2.ManagerId
 ;
