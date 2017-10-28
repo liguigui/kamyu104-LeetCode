@@ -1,6 +1,16 @@
 # Time:  O(nlogn)
 # Space: O(n)
+SET @prev := -100000000; 
+SELECT MIN(diff) AS shortest
+FROM (SELECT (x - @prev) AS diff, @prev := x 
+      FROM (SELECT * 
+            FROM point 
+            ORDER BY x) AS t1
+     ) AS t2
+;
 
+# Time:  O(nlogn)
+# Space: O(n)
 SELECT MIN(P1.x - P2.x) AS shortest 
 FROM (SELECT @id1:=0, @id2:=0) AS t,
      (SELECT @id1:=@id1+1 AS id, x FROM point ORDER BY x) AS P1
